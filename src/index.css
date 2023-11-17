@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Exo+2&family=Lora:wght@500&family=Orbitron:wght@500&family=Special+Elite&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cabin&family=Nunito&display=swap");
+
+.font-nunito {
+  font-family: "Nunito", Helvetica, sans-serif;
+}
+
+.font-cabin {
+  font-family: "Cabin", Helvetica, sans-serif;
+}
+
+.font-orbitron {
+  font-family: "Orbitron", Helvetica, sans-serif;
+}
+
+.font-lora {
+  font-family: "Lora", Helvetica, sans-serif;
+}
+
+header div div span.font-exo {
+  font-family: "Exo 2", Helvetica, sans-serif;
+}
+
+.font-exo {
+  font-family: "Exo 2", Helvetica, sans-serif;
+}
+
+.logo-2 {
+  display: none;
+}
+
+.logo-container:hover .logo-1 {
+  display: none;
+}
+
+.logo-container:hover .logo-2 {
+  display: block;
+}
