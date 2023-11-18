@@ -2,7 +2,9 @@ import axios from "axios";
 
 export const getAllAnime = async (page = 1) => {
   try {
-    const response = await axios.get(`https://api.jikan.moe/v4/anime?limit=15`);
+    const response = await axios.get(
+      `https://api.jikan.moe/v4/anime?limit=15&sfw`
+    );
     return response.data;
   } catch (error) {
     console.log(error.response.data);
@@ -12,7 +14,7 @@ export const getAllAnime = async (page = 1) => {
 export const getSearch = async (page = 1, searchAnime) => {
   try {
     const response = await axios.get(
-      `https://api.jikan.moe/v4/anime?page=${page}&q=${searchAnime}`
+      `https://api.jikan.moe/v4/anime?page=${page}&q=${searchAnime}&sfw`
     );
     return response.data;
   } catch (error) {
@@ -23,7 +25,7 @@ export const getSearch = async (page = 1, searchAnime) => {
 export const getTopAnime = async (page = 1) => {
   try {
     const response = await axios.get(
-      `https://api.jikan.moe/v4/top/anime?page=${page}`
+      `https://api.jikan.moe/v4/top/anime?page=${page}&sfw`
     );
     return response.data;
   } catch (error) {
@@ -34,7 +36,7 @@ export const getTopAnime = async (page = 1) => {
 export const getSeasonAnime = async (page = 1) => {
   try {
     const response = await axios.get(
-      `https://api.jikan.moe/v4/seasons/now?page=${page}`
+      `https://api.jikan.moe/v4/seasons/now?page=${page}&sfw`
     );
     return response.data;
   } catch (error) {
@@ -45,7 +47,7 @@ export const getSeasonAnime = async (page = 1) => {
 export const getUpcomingAnime = async (page = 1) => {
   try {
     const response = await axios.get(
-      `https://api.jikan.moe/v4/seasons/upcoming?page=${page}`
+      `https://api.jikan.moe/v4/seasons/upcoming?page=${page}&sfw`
     );
     return response.data;
   } catch (error) {
