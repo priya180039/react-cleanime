@@ -2,18 +2,20 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import AnimeList from "../components/AnimeList";
 import SearchBar from "../components/SearchBar";
-import {
-  getAllAnime,
-  getSeasonAnime,
-  getTopAnime,
-  getUpcomingAnime,
-} from "../api/Api";
+import { BiChevronUpCircle } from "react-icons/bi";
+import { getSeasonAnime, getTopAnime, getUpcomingAnime } from "../api/Api";
 import { Link, useParams } from "react-router-dom";
+import { useStatic } from "../features/StaticContext";
 
 const Home = () => {
-  const [topAnime, setTopAnime] = useState([]);
-  const [currentAnime, setCurrentAnime] = useState([]);
-  const [upcomingSeason, setUpcomingSeason] = useState([]);
+  const {
+    topAnime,
+    setTopAnime,
+    currentAnime,
+    setCurrentAnime,
+    upcomingSeason,
+    setUpcomingSeason,
+  } = useStatic();
   const [isSearch, setSearch] = useState(false);
   const { name } = useParams();
 
@@ -21,15 +23,15 @@ const Home = () => {
     const title = document.querySelector("title");
     title.textContent = "Cleanime";
     const getData = async () => {
-      if (!isSearch && !name) {
+      if (!isSearch && !name && !topAnime.length) {
         const resTop = await getTopAnime();
         if (resTop) {
           setTopAnime(resTop.data);
         }
       }
-      await new Promise((resolve) => setTimeout(resolve, 400));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      if (!isSearch && !name) {
+      if (!isSearch && !name && !currentAnime.length) {
         const resSeason = await getSeasonAnime();
         if (resSeason) {
           setCurrentAnime(resSeason.data);
@@ -37,7 +39,7 @@ const Home = () => {
       }
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      if (!isSearch && !name) {
+      if (!isSearch && !name && !upcomingSeason.length) {
         const resUpcoming = await getUpcomingAnime();
         if (resUpcoming) {
           setUpcomingSeason(resUpcoming.data);
@@ -45,13 +47,22 @@ const Home = () => {
       }
     };
     getData();
-  }, [name]);
+  }, [
+    name,
+    isSearch,
+    setTopAnime,
+    setCurrentAnime,
+    setUpcomingSeason,
+    topAnime.length,
+    currentAnime.length,
+    upcomingSeason.length,
+  ]);
 
   return (
     <div className={`bg-main-bg min-w-screen min-h-screen bg-fixed bg-cover `}>
       <div id="container">
         <Header />
-        <div className="pb-5 text-gray-200">
+        <div id="#top" className="pb-5 text-gray-200">
           <SearchBar isSearch={isSearch} setSearch={setSearch} />
           {(!isSearch || !name) && (
             <div>
@@ -111,6 +122,9 @@ const Home = () => {
               </div>
             </div>
           )}
+          <a href="#top">
+            <BiChevronUpCircle className="fixed right-4 bottom-4 text-4xl text-gray-200 bg-zinc-950/50" />
+          </a>
         </div>
       </div>
     </div>

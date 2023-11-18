@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import { Link } from "react-router-dom";
 import AnimeGrid from "../components/AnimeGrid";
 import { getSeasonAnime } from "../api/Api";
+import { BiChevronUpCircle } from "react-icons/bi";
 // import { FaSpinner } from "react-icons/fa";
 
 const Current = () => {
@@ -14,7 +15,9 @@ const Current = () => {
   useEffect(() => {
     try {
       if (currentAnime.length < 1) {
-        getSeasonAnime().then((res) => setCurrentAnime(res.data));
+        getSeasonAnime().then((res) => {
+          if (res) setCurrentAnime(res.data);
+        });
       }
     } catch (error) {
       console.log(error.response.data);
@@ -29,9 +32,9 @@ const Current = () => {
       try {
         setLoading(true);
         if (page > 1) {
-          getSeasonAnime(page).then((res) =>
-            setCurrentAnime((prevList) => [...prevList, ...res.data])
-          );
+          getSeasonAnime(page).then((res) => {
+            if (res) setCurrentAnime((prevList) => [...prevList, ...res.data]);
+          });
         }
       } catch (error) {
         console.log(error.response.data);
@@ -81,13 +84,14 @@ const Current = () => {
                   return <AnimeGrid key={i} data={anime} />;
                 })}
             </div>
-            {/* {isLoading && (
-              <div>
+            {/* <div>
                 <FaSpinner />
-              </div>
-            )} */}
+              </div> */}
           </div>
         </div>
+        <a href="#top">
+          <BiChevronUpCircle className="fixed right-4 bottom-4 text-4xl text-gray-200 bg-zinc-950/50" />
+        </a>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllAnime, getSearch } from "../api/Api";
+import { getSearch } from "../api/Api";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import AnimeGrid from "./AnimeGrid";
 

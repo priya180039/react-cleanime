@@ -11,6 +11,17 @@ export const getAllAnime = async (page = 1) => {
   }
 };
 
+export const getAnimeById = async (id) => {
+  try {
+    const response = await axios.get(
+      `https://api.jikan.moe/v4/anime/${id}/full`
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error.response.data);
+  }
+};
+
 export const getSearch = async (page = 1, searchAnime) => {
   try {
     const response = await axios.get(

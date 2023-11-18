@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import { Link } from "react-router-dom";
 import AnimeGrid from "../components/AnimeGrid";
 import { getTopAnime } from "../api/Api";
+import { BiChevronUpCircle } from "react-icons/bi";
 // import { FaSpinner } from "react-icons/fa";
 
 const Top = () => {
@@ -14,7 +15,9 @@ const Top = () => {
   useEffect(() => {
     try {
       if (topAnime.length < 1) {
-        getTopAnime().then((res) => setTopAnime(res.data));
+        getTopAnime().then((res) => {
+          if (res) setTopAnime(res.data);
+        });
       }
     } catch (error) {
       console.log(error.response.data);
@@ -29,9 +32,9 @@ const Top = () => {
       try {
         setLoading(true);
         if (page > 1 && page < 5) {
-          getTopAnime(page).then((res) =>
-            setTopAnime((prevList) => [...prevList, ...res.data])
-          );
+          getTopAnime(page).then((res) => {
+            if (res) setTopAnime((prevList) => [...prevList, ...res.data]);
+          });
         }
       } catch (error) {
         console.log(error.response.data);
@@ -86,6 +89,9 @@ const Top = () => {
             </div> */}
           </div>
         </div>
+        <a href="#top">
+          <BiChevronUpCircle className="fixed right-4 bottom-4 text-4xl text-gray-200 bg-zinc-950/50" />
+        </a>
       </div>
     </div>
   );
