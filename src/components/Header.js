@@ -7,13 +7,34 @@ const Header = () => {
   return (
     <div className="flex w-full text-gray-200 text-xl justify-between px-10 py-4">
       <div className="logo-container hover:cursor-pointer">
-        <img src={logo} width="150" className="logo-1" />
-        <img src={logo_h} width="150" className="logo-2" />
+        <img src={logo} width="150" className="logo-1" alt="logo" />
+        <img src={logo_h} width="150" className="logo-2" alt="logo2" />
       </div>
       <div className="font-nunito">
-        <NavLink className="px-4 hover:text-sky-500">Home</NavLink>
-        <NavLink className="px-4 hover:text-sky-500">Dashboard</NavLink>
-        <NavLink className="px-4 hover:text-sky-500">Sign In</NavLink>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? "px-4 text-sky-500" : "px-4 hover:text-sky-500"
+          }
+        >
+          Home
+        </NavLink>
+        <NavLink
+          to="/dashboard"
+          className={({ isActive }) =>
+            isActive ? "px-4 text-sky-500" : "px-4 hover:text-sky-500"
+          }
+        >
+          Dashboard
+        </NavLink>
+        <NavLink
+          to="/sign"
+          className={({ isActive }) =>
+            isActive ? "px-4 text-sky-500" : "px-4 hover:text-sky-500"
+          }
+        >
+          Sign In
+        </NavLink>
       </div>
     </div>
   );
