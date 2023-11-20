@@ -16,7 +16,10 @@ const Top = () => {
     try {
       if (topAnime.length < 1) {
         getTopAnime().then((res) => {
-          if (res) setTopAnime(res.data);
+          if (res) {
+            setTopAnime(res.data);
+            // console.log(topAnime);
+          }
         });
       }
     } catch (error) {

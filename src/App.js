@@ -7,8 +7,13 @@ import Current from "./pages/Current";
 import Upcoming from "./pages/Upcoming";
 import AnimeDetail from "./pages/AnimeDetail";
 import { StaticProvider } from "./features/StaticContext";
+import { useEffect } from "react";
 
 function App() {
+  useEffect(() => {
+    const title = document.querySelector("title");
+    title.textContent = "Cleanime";
+  }, []);
   return (
     <StaticProvider>
       <Router>

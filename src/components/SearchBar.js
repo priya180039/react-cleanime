@@ -12,8 +12,6 @@ const All = (props) => {
   //   const limit = 24;
 
   useEffect(() => {
-    const title = document.querySelector("title");
-    title.textContent = "Cleanime | All Anime";
     if (name && props.isSearch) {
       const res = async () => {
         await getSearch(page, name).then((response) => {

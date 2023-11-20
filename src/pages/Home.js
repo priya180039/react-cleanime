@@ -66,7 +66,7 @@ const Home = () => {
           <SearchBar isSearch={isSearch} setSearch={setSearch} />
           {(!isSearch || !name) && (
             <div>
-              <div className="w-10/12 bg-transparent border-2 border-gray-200 rounded-md mx-auto mt-10">
+              <div className="w-10/12 bg-transparent border-2 border-gray-200 rounded-md mx-auto mt-6">
                 <div className="flex justify-between">
                   <p className="m-4 font-exo text-3xl">Top Anime</p>
                   <Link
