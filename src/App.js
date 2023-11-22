@@ -8,6 +8,7 @@ import Upcoming from "./pages/Upcoming";
 import AnimeDetail from "./pages/AnimeDetail";
 import { StaticProvider } from "./features/StaticContext";
 import { useEffect } from "react";
+import Search from "./pages/Search";
 
 function App() {
   useEffect(() => {
@@ -19,7 +20,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/all/:name" element={<Home />} />
+          <Route path="/search/:name" element={<Search />} />
           <Route path="/top" element={<Top />} />
           <Route path="/anime/:id" element={<AnimeDetail />} />
           <Route path="/current" element={<Current />} />

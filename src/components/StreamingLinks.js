@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { BiChevronDown, BiChevronUp } from "react-icons/bi";
-import { SiBilibili, SiCrunchyroll, SiNetflix } from "react-icons/si";
-import { Link } from "react-router-dom";
+import { SiCrunchyroll, SiNetflix } from "react-icons/si";
 
 const StreamingLinks = (props) => {
   const [show, setShow] = useState(false);
@@ -35,30 +34,38 @@ const StreamingLinks = (props) => {
                 : "-translate-y-[10%] overflow-hidden h-0 opacity-0"
             }`}
           >
-            {props.data.streaming.map((platform) => {
-              if (platform.name === "Crunchyroll")
+            {props.data.streaming
+              .filter(
+                (platform) =>
+                  platform.name === "Netflix" || platform.name === "Crunchyroll"
+              )
+              .map((platform) => {
                 return (
-                  <a
-                    href={platform.url}
-                    target="_blank"
-                    className="flex text-lg items-center pt-4 px-6"
-                  >
-                    <SiCrunchyroll className="pr-2 text-2xl" />
-                    {platform.name}
-                  </a>
+                  <div className="my-4 px-6" key={platform.url}>
+                    {platform.name === "Netflix" ? (
+                      <a
+                        href={platform.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex text-lg items-center"
+                      >
+                        <SiCrunchyroll className="pr-2 text-2xl" />
+                        {platform.name}
+                      </a>
+                    ) : (
+                      <a
+                        href={platform.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex text-lg items-center"
+                      >
+                        <SiNetflix className="pr-2 text-2xl" />
+                        {platform.name}
+                      </a>
+                    )}
+                  </div>
                 );
-              if (platform.name === "Netflix")
-                return (
-                  <a
-                    href={platform.url}
-                    target="_blank"
-                    className="flex text-lg items-center py-4 px-6"
-                  >
-                    <SiNetflix className="pr-2 text-2xl" />
-                    {platform.name}
-                  </a>
-                );
-            })}
+              })}
           </div>
         </>
       )}

@@ -5,6 +5,9 @@ module.exports = {
     extend: {
       backgroundImage: {
         "main-bg": "url('/src/assets/bg-1.png')",
+        "large-bg": "url('/src/assets/bg-1-lg.png')",
+        "medium-bg": "url('/src/assets/bg-1-md.png')",
+        "small-bg": "url('/src/assets/bg-1-sm.png')",
       },
     },
   },
